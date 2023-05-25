@@ -1,10 +1,14 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace OfficeAutomation.Outlook
 {
+    /// <summary>
+    /// Class meant for collaborating with existing instances of Microsoft Outlook, or spawning new instances of Microsoft 
+    /// Outlook process. 
+    /// </summary>
     public class ApplicationHandler
     {
         public static readonly string OutlookProcessName = "OUTLOOK";
@@ -13,6 +17,12 @@ namespace OfficeAutomation.Outlook
 
         public static readonly string OutlookApplicationProgID = "Outlook.Application";
 
+        /// <summary>
+        /// Method attempts to get an existing (i.e. running) Microsoft Outlook application. 
+        /// </summary>
+        /// 
+        /// <returns>An instance of <see cref="Microsoft.Office.Interop.Outlook.Application"/> class representing an existing 
+        /// (i.e. running) Microsoft Outlook, or null if Outlook is not running.</returns>
         public static Microsoft.Office.Interop.Outlook.Application GetRunningOutlook()
         {
             // Check whether there is an Outlook process running. 
@@ -25,6 +35,13 @@ namespace OfficeAutomation.Outlook
             return null;
         }
 
+        /// <summary>
+        /// Method attempts to get an existing (i.e. running) Microsoft Outlook application, or otherwise to instantiate a 
+        /// new Microsoft Outlook process. 
+        /// </summary>
+        /// 
+        /// <returns>An instance of <see cref="Microsoft.Office.Interop.Outlook.Application"/> class representing an existing 
+        /// (i.e. running) Microsoft Outlook, or a newly-instantiated Microsoft Outlook application process.</returns>
         public static Microsoft.Office.Interop.Outlook.Application GetOutlook()
         {
             Microsoft.Office.Interop.Outlook.Application application = ApplicationHandler.GetRunningOutlook();
