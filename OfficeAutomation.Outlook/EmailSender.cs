@@ -1,25 +1,26 @@
-﻿using System;
+using System;
 
 namespace OfficeAutomation.Outlook
 {
+    /// <summary>
+    /// Class meant for sending emails via interaction with Microsoft Outlook desktop application. It can either interact with a running 
+    /// Microsoft Outlook application, or it can start a new instance of Microsoft Outlook application. 
+    /// </summary>
     public class EmailSender
     {
-        private Microsoft.Office.Interop.Outlook.Application _outlookApplication = null;
+        protected Microsoft.Office.Interop.Outlook.Application _outlookApplication = null;
 
-        public Microsoft.Office.Interop.Outlook.Application OutlookApplication
+        protected virtual Microsoft.Office.Interop.Outlook.Application GetOutlookApplication()
         {
-            get
+            if (this._outlookApplication == null)
             {
-                if (this._outlookApplication == null)
-                {
-                    this._outlookApplication = ApplicationHandler.GetOutlook();
-                }
-
-                return this._outlookApplication;
+                this._outlookApplication = ApplicationHandler.GetOutlook();
             }
+
+            return this._outlookApplication;
         }
 
-        public void SendEmail(EmailMessage emailMessage)
+        public virtual void SendEmail(EmailMessage emailMessage)
         {
             if (emailMessage == null)
             {
@@ -28,7 +29,7 @@ namespace OfficeAutomation.Outlook
 
             try
             {
-                Microsoft.Office.Interop.Outlook.Application application = this.OutlookApplication;
+                Microsoft.Office.Interop.Outlook.Application application = this.GetOutlookApplication();
 
                 Microsoft.Office.Interop.Outlook.MailItem newMailItem = (Microsoft.Office.Interop.Outlook.MailItem)application.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
 
