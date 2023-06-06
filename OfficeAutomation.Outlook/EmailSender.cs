@@ -34,7 +34,9 @@ namespace OfficeAutomation.Outlook
                 Microsoft.Office.Interop.Outlook.MailItem newMailItem = (Microsoft.Office.Interop.Outlook.MailItem)application.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
 
                 newMailItem.To = string.Join("; ", emailMessage.Receivers.ToArray());
-                newMailItem.CC = string.Join("; ", emailMessage.Receivers.ToArray());
+                newMailItem.CC = string.Join("; ", emailMessage.CCReceivers.ToArray());
+                newMailItem.BCC = string.Join("; ", emailMessage.BCCReceivers.ToArray());
+
                 newMailItem.Subject = emailMessage.Subject;
 
                 if (!string.IsNullOrWhiteSpace(emailMessage.PlaintextBody))

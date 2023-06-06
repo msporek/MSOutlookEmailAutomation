@@ -26,6 +26,8 @@ namespace OfficeAutomation.Outlook
 
         public List<string> CCReceivers { get; private set; }
 
+        public List<string> BCCReceivers { get; private set; }
+
         public EmailMessage()
         {
         }
@@ -36,7 +38,8 @@ namespace OfficeAutomation.Outlook
             string htmlBody, 
             string sendFromEmailAddress, 
             List<string> receivers, 
-            List<string> ccReceivers = null)
+            List<string> ccReceivers = null, 
+            List<string> bccReceivers = null)
             : this()
         {
             this.Subject = subject;
@@ -45,8 +48,11 @@ namespace OfficeAutomation.Outlook
             this.HtmlBody = htmlBody;
 
             this.SendFromEmailAddress = sendFromEmailAddress;
+
             this.Receivers = receivers;
+            
             this.CCReceivers = ccReceivers ?? new List<string>();
+            this.BCCReceivers = bccReceivers ?? new List<string>();
         }
     }
 }
