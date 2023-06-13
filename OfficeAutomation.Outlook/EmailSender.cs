@@ -20,6 +20,14 @@ namespace OfficeAutomation.Outlook
             return this._outlookApplication;
         }
 
+        /// <summary>
+        /// Method sends the provided <paramref name="emailMessage"/> using Microsoft Outlook application. It uses either an existing 
+        /// and running instance of Microsoft Outlook application, or it spawns a new one. 
+        /// </summary>
+        /// 
+        /// <param name="emailMessage">Email message with all details to be sent.</param>
+        /// 
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="emailMessage"/> is null.</exception>
         public virtual void SendEmail(EmailMessage emailMessage)
         {
             if (emailMessage == null)
@@ -70,6 +78,9 @@ namespace OfficeAutomation.Outlook
             }
         }
 
+        /// <summary>
+        /// Constructor creates a new instance of <see cref="EmailSender"/> class.
+        /// </summary>
         public EmailSender()
         {
         }

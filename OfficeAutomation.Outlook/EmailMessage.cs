@@ -2,6 +2,10 @@
 
 namespace OfficeAutomation.Outlook
 {
+    /// <summary>
+    /// Class represents details of an email message to be send with the library. The class properties represent all properties that 
+    /// the library supports when sending emails. 
+    /// </summary>
     public class EmailMessage
     {
         public static EmailMessage FromPlaintextBody(string subject, string plaintextBody, string sendFromEmailAddress, List<string> receivers)
