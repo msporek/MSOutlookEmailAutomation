@@ -8,6 +8,8 @@ namespace OfficeAutomation.Outlook
     /// </summary>
     public class EmailSender
     {
+        public const string EmailAddressDelimeter = "; ";
+
         protected Microsoft.Office.Interop.Outlook.Application _outlookApplication = null;
 
         protected virtual Microsoft.Office.Interop.Outlook.Application GetOutlookApplication()
@@ -41,9 +43,9 @@ namespace OfficeAutomation.Outlook
 
                 Microsoft.Office.Interop.Outlook.MailItem newMailItem = (Microsoft.Office.Interop.Outlook.MailItem)application.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
 
-                newMailItem.To = string.Join("; ", emailMessage.Receivers.ToArray());
-                newMailItem.CC = string.Join("; ", emailMessage.CCReceivers.ToArray());
-                newMailItem.BCC = string.Join("; ", emailMessage.BCCReceivers.ToArray());
+                newMailItem.To = string.Join(EmailSender.EmailAddressDelimeter, emailMessage.Receivers.ToArray());
+                newMailItem.CC = string.Join(EmailSender.EmailAddressDelimeter, emailMessage.CCReceivers.ToArray());
+                newMailItem.BCC = string.Join(EmailSender.EmailAddressDelimeter, emailMessage.BCCReceivers.ToArray());
 
                 newMailItem.Subject = emailMessage.Subject;
 
@@ -51,7 +53,8 @@ namespace OfficeAutomation.Outlook
                 {
                     newMailItem.Body = emailMessage.PlaintextBody;
                 }
-                else if (!string.IsNullOrWhiteSpace(emailMessage.HtmlBody))
+                
+                if (!string.IsNullOrWhiteSpace(emailMessage.HtmlBody))
                 {
                     newMailItem.HTMLBody = emailMessage.HtmlBody;
                 }
