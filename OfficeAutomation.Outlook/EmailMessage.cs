@@ -8,12 +8,20 @@ namespace OfficeAutomation.Outlook
     /// </summary>
     public class EmailMessage
     {
-        public static EmailMessage FromPlaintextBody(string subject, string plaintextBody, string sendFromEmailAddress, List<string> receivers)
+        public static EmailMessage FromPlaintextBody(
+            string subject, 
+            string plaintextBody, 
+            string sendFromEmailAddress, 
+            List<string> receivers)
         {
             return new EmailMessage(subject, plaintextBody, null, sendFromEmailAddress, receivers);
         }
 
-        public static EmailMessage FromHtmlBody(string subject, string htmlBody, string sendFromEmailAddress, List<string> receivers)
+        public static EmailMessage FromHtmlBody(
+            string subject, 
+            string htmlBody, 
+            string sendFromEmailAddress, 
+            List<string> receivers)
         {
             return new EmailMessage(subject, null, htmlBody, sendFromEmailAddress, receivers);
         }

@@ -11,10 +11,19 @@ namespace OfficeAutomation.Outlook
     /// </summary>
     public class ApplicationHandler
     {
+        /// <summary>
+        /// The name of the MS Outlook process in Windows OS. 
+        /// </summary>
         public static readonly string OutlookProcessName = "OUTLOOK";
 
+        /// <summary>
+        /// MAPI Namespace name. 
+        /// </summary>
         public static readonly string NamespaceMAPI = "MAPI";
 
+        /// <summary>
+        /// ProgID of the MS Outlook application. 
+        /// </summary>
         public static readonly string OutlookApplicationProgID = "Outlook.Application";
 
         /// <summary>
